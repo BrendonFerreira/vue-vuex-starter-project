@@ -1,10 +1,16 @@
 <template>
 	
   <div id="asda">
-	  Todo: <button @click="create">create +</button>
-	  {{ list }}
-    <todo-list :items="list" />
-  </div>
+	  <h1>Todos</h1>
+	  <todo-list :items="list">
+			<template slot="start">
+				<create-item :add-at="0" />
+			</template>
+			<template slot="end">
+				<create-item :add-at="list.length - 1" />
+			</template>
+		</todo-list>
+	</div>
 
 </template>
 
@@ -12,22 +18,26 @@
 
 import { mapGetters } from 'vuex'
 import TodoList from './Elements/List'
-import TodoCreate from './Elements/Create'
+import CreateItem from './Elements/Create'
 export default {
 	name: 'main-todos',
 	components: {
-		TodoList
+		TodoList,
+		CreateItem
 	},
-	computed: mapGetters( 'todo', [ 'list' ] ),
-	methods: {
-		create() {
-			this.$modal.show(TodoCreate)
-		}
-	}
+	computed: mapGetters( 'todos', [ 'list' ] )
 }
 
 </script>
 
-<style>
+<style scoped>
+
+	button.create-item {
+		width: 100%;
+		padding: 10px 20px;
+		background-color: rgba(0,0,0,0.2);
+		border: none;
+		color: white;
+	}
 
 </style>

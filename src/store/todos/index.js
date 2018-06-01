@@ -9,6 +9,9 @@ export default {
 	getters: {
 		list( state ) {
 			return state.list
+		},
+		getById( state ){
+			return id => state.list.find( item => item.id === id )
 		}
 	},
 
@@ -23,6 +26,12 @@ export default {
 			const item = state.list[index]
 			item.completed = !item.completed
 			state.list.splice( index, 1, item )					
+		},
+		'DELETE_SUCCESS'( state , id ) {
+			const index = state.list.findIndex( item => item.id === id )
+			if( index < 0 ) return
+			
+			state.list.splice( index, 1 )					
 		}
 	},
 
@@ -30,8 +39,14 @@ export default {
 		create( { commit }, content ) {
 			commit( 'CREATE_SUCCESS', content )
 		},
-		toggle( {commit}, id ) {
+		toggle( { commit }, id ) {
 			commit('UPDATE_SUCCESS', id )
+		},
+		removeById( { commit }, id ) {
+			commit('DELETE_SUCCESS', id)
+		},
+		fetch( id ) {
+			
 		}
 	}
 	

@@ -2,10 +2,10 @@ import Vue from 'vue';
 import Vuex from 'vuex'
 import storeConfig from './store'
 import App from './components/App.vue';
-// import VueModal from '../../vue-modal'
+import VueModal from '../../vue-modal'
 
 Vue.use( Vuex )
-// Vue.use(VueModal)
+Vue.use(VueModal)
 
 const store = new Vuex.Store( storeConfig )
 
