@@ -5,13 +5,18 @@
 				add_circle_outline
 			</i>
 		</div>
-    <input @blur="create" type="text" ref="create" v-model="content" @keyup.enter="create">
+    <input @blur="create" type="text" ref="create" v-model="content" @keyup.enter="create" title="create">
   </div>
 </template>
 
 <script>
 export default {
-  name:"todo-form",
+	name:"todo-form",
+	props: {
+		'create-at': {
+			type: Number
+		}
+	},
   data() {
     return {
 			content: '',
@@ -21,8 +26,8 @@ export default {
   methods: {
     create(  ) {
 
-			if( this.content.length > 0 ) { 
-				this.$store.dispatch("todos/create", { content: this.content })
+			if( this.content.length > 0 ) {
+				this.$store.dispatch("todos/create", { content: this.content, index: this.createAt })
 			}
 			this.content = ''
 			this.creating = false
@@ -40,6 +45,7 @@ export default {
 	.create {
 		padding: 10px 20px;
 		position: relative;
+		background-color: white;
 	}
 
 	.create-icon {

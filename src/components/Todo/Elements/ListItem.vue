@@ -4,7 +4,7 @@
 			<input type="checkbox" v-model="completed">
 		</div>
 		<div class="content">
-			<b @click="open(resource)">{{resource.content}}</b>
+			<div @click="open(resource)">{{resource.content}}</div>
 		</div>
 		<div class="delete" @click="remove" v-if="resource.completed">
 			<i class="material-icons">
@@ -39,6 +39,7 @@ export default {
 		display: flex;
     align-items: stretch;
     justify-content: stretch;
+		background-color: white;
 	}
 
 	.content {

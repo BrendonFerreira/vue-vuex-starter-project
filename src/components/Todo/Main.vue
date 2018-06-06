@@ -1,13 +1,13 @@
 <template>
-	
-  <div id="asda">
+
+  <div class="main">
 	  <h1>Todos</h1>
-	  <todo-list :items="list">
+	  <todo-list :items="list" class="todo-list">
 			<template slot="start">
-				<create-item :add-at="0" />
+				<create-item :create-at="0" />
 			</template>
 			<template slot="end">
-				<create-item :add-at="list.length - 1" />
+				<create-item :create-at="list.length - 1" />
 			</template>
 		</todo-list>
 	</div>
@@ -38,6 +38,15 @@ export default {
 		background-color: rgba(0,0,0,0.2);
 		border: none;
 		color: white;
+	}
+
+	.todo-list {
+		background-color: rgba(0,0,0,0.1);
+		padding: 10px 30px;
+	}
+
+	.main h1 {
+		margin-left: 20px;
 	}
 
 </style>
